@@ -976,11 +976,11 @@ function __check_same_array(arr1: any, arr2: any) {
     if (arr1.length === 0 && 0 === arr2.length) {
         return true;
     }
-    if (!oldNodeVersion && arr1.buffer) {
+    if (!oldNodeVersion && arr1.buffer && arr2.buffer) {
 
         // v1 and v2 are TypedArray (such as Int32Array...)
         // this is the most efficient way to compare 2 buffers but it doesn't work with node <= 0.12
-        assert(arr2.buffer);
+        assert(arr2.buffer, "");
         // compare byte by byte
         const b1 = Buffer.from(arr1.buffer, arr1.byteOffset, arr1.byteLength);
         const b2 = Buffer.from(arr2.buffer, arr2.byteOffset, arr2.byteLength);
